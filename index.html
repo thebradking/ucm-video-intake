@@ -9,137 +9,51 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blue: #003594;
-      --blue-dark: #002570;
-      --blue-light: #D0DAEA;
-      --gold: #CFA820;
-      --bg: #ffffff;
-      --bg2: #f5f5f5;
-      --border: #e0e0e0;
-      --text: #1a1a1a;
-      --text2: #555555;
-      --text3: #888888;
-      --red: #cc0000;
-      --radius: 10px;
+      --blue: #003594; --blue-dark: #002570; --blue-light: #D0DAEA;
+      --gold: #CFA820; --bg: #ffffff; --bg2: #f5f5f5;
+      --border: #e0e0e0; --text: #1a1a1a; --text2: #555555; --text3: #888888;
+      --red: #cc0000; --radius: 10px;
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     }
-    body {
-      font-family: var(--font);
-      background: #f0f2f5;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px 16px 48px;
-    }
-    .page-header {
-      width: 100%; max-width: 640px;
-      margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .page-header .icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--blue);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    body { font-family: var(--font); background: #f0f2f5; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 48px; }
+    .page-header { width: 100%; max-width: 640px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .page-header .icon { width: 40px; height: 40px; border-radius: 8px; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .page-header .icon i { color: #fff; font-size: 20px; }
     .page-header-text p { font-size: 13px; font-weight: 600; color: var(--blue); }
     .page-header-text span { font-size: 11px; color: var(--text3); }
-    #app {
-      width: 100%; max-width: 640px;
-      background: var(--bg);
-      border-radius: var(--radius);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-      display: flex; flex-direction: column;
-      height: 680px; overflow: hidden;
-    }
-    #hdr {
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      display: flex; align-items: center; gap: 12px;
-      flex-shrink: 0;
-    }
-    .av {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--blue);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
+    #app { width: 100%; max-width: 640px; background: var(--bg); border-radius: var(--radius); box-shadow: 0 2px 16px rgba(0,0,0,0.10); display: flex; flex-direction: column; height: 680px; overflow: hidden; }
+    #hdr { padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--bg); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .av { width: 36px; height: 36px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .av i { color: #fff; font-size: 18px; }
     .hi p { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.2; }
     .hi span { font-size: 11px; color: var(--text3); }
-    #chat {
-      flex: 1; overflow-y: auto;
-      padding: 16px;
-      display: flex; flex-direction: column; gap: 10px;
-    }
+    #chat { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
     .msg { max-width: 85%; display: flex; flex-direction: column; gap: 3px; }
-    .msg.bot { align-self: flex-start; }
-    .msg.user { align-self: flex-end; }
+    .msg.bot { align-self: flex-start; } .msg.user { align-self: flex-end; }
     .lbl { font-size: 11px; color: var(--text3); padding: 0 3px; }
     .user .lbl { text-align: right; }
-    .bub {
-      padding: 10px 14px; border-radius: 16px;
-      font-size: 14px; line-height: 1.55; white-space: pre-wrap;
-    }
+    .bub { padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
     .bot .bub { background: var(--bg2); color: var(--text); border-bottom-left-radius: 3px; }
     .user .bub { background: var(--blue); color: #fff; border-bottom-right-radius: 3px; }
-    #ftr {
-      padding: 10px 14px;
-      border-top: 1px solid var(--border);
-      background: var(--bg); flex-shrink: 0;
-    }
+    #ftr { padding: 10px 14px; border-top: 1px solid var(--border); background: var(--bg); flex-shrink: 0; }
     .prg { display: flex; gap: 4px; margin-bottom: 9px; flex-wrap: wrap; }
-    .pd {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--border); transition: background .3s;
-    }
-    .pd.done { background: var(--blue); }
-    .pd.active { background: var(--blue); opacity: .45; }
+    .pd { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .3s; }
+    .pd.done { background: var(--blue); } .pd.active { background: var(--blue); opacity: .45; }
     #ir { display: flex; gap: 8px; align-items: flex-end; }
-    #inp {
-      flex: 1; border: 1px solid var(--border); border-radius: 8px;
-      padding: 9px 12px; font-size: 14px; font-family: var(--font);
-      resize: none; min-height: 38px; max-height: 100px;
-      background: var(--bg); color: var(--text); outline: none; line-height: 1.45;
-    }
+    #inp { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; font-size: 14px; font-family: var(--font); resize: none; min-height: 38px; max-height: 100px; background: var(--bg); color: var(--text); outline: none; line-height: 1.45; }
     #inp:focus { border-color: var(--blue); }
-    #sb {
-      width: 36px; height: 36px; border-radius: 8px;
-      border: none; background: var(--blue); color: #fff;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: background .15s;
-    }
-    #sb:hover { background: var(--blue-dark); }
-    #sb:disabled { background: var(--bg2); color: var(--text3); cursor: default; }
-    .typing {
-      display: flex; gap: 4px; align-items: center;
-      padding: 10px 14px; background: var(--bg2);
-      border-radius: 16px; border-bottom-left-radius: 3px; width: fit-content;
-    }
-    .typing span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--text3); animation: dt 1.2s infinite;
-    }
-    .typing span:nth-child(2) { animation-delay: .2s; }
-    .typing span:nth-child(3) { animation-delay: .4s; }
+    #sb { width: 36px; height: 36px; border-radius: 8px; border: none; background: var(--blue); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .15s; }
+    #sb:hover { background: var(--blue-dark); } #sb:disabled { background: var(--bg2); color: var(--text3); cursor: default; }
+    .typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: var(--bg2); border-radius: 16px; border-bottom-left-radius: 3px; width: fit-content; }
+    .typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); animation: dt 1.2s infinite; }
+    .typing span:nth-child(2) { animation-delay: .2s; } .typing span:nth-child(3) { animation-delay: .4s; }
     @keyframes dt { 0%,80%,100%{transform:scale(.65);opacity:.4} 40%{transform:scale(1);opacity:1} }
     .arow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
-    .abtn {
-      padding: 8px 16px; border-radius: 8px;
-      border: 1px solid var(--border); background: var(--bg);
-      color: var(--text); font-size: 13.5px; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font); text-decoration: none; transition: background .15s;
-    }
+    .abtn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); text-decoration: none; transition: background .15s; }
     .abtn:hover { background: var(--bg2); }
     .abtn.pri { background: var(--blue); color: #fff; border-color: var(--blue); }
     .abtn.pri:hover { background: var(--blue-dark); }
-    .section-label {
-      font-size: 10px; font-weight: 600; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--blue);
-      padding: 14px 0 2px; opacity: .7;
-    }
+    .section-label { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); padding: 14px 0 2px; opacity: .7; }
   </style>
 </head>
 <body>
@@ -155,10 +69,7 @@
 <div id="app">
   <div id="hdr">
     <div class="av"><i class="ti ti-message-circle"></i></div>
-    <div class="hi">
-      <p>Video Intake Assistant</p>
-      <span>Answer a few questions to kick off your project</span>
-    </div>
+    <div class="hi"><p>Video Intake Assistant</p><span>Answer a few questions to kick off your project</span></div>
   </div>
   <div id="chat"></div>
   <div id="ftr">
@@ -171,123 +82,49 @@
 </div>
 
 <script>
-// ── QUESTIONS ─────────────────────────────────────────────────────────────────
-// Each question maps 1:1 to exactly one brief field. No parsing or extraction.
+// ── CONSTANTS ─────────────────────────────────────────────────────────────────
+
+const TYPE_MAP  = { "1":"Interview / Q&A","2":"Leadership Message","3":"B-Roll / Stock Footage","4":"Feature / Profile","5":"Sizzle Reel","6":"Other" };
+const AUD_LABELS = ["Undergraduate Students","Graduate Students","Faculty","Staff","Alumni","Parents","Prospective Students","General Audience"];
+
+// ── MAIN QUESTION LIST ────────────────────────────────────────────────────────
+// Each entry maps directly to one brief field. No extraction.
+// Subject collection is handled by a separate mini state machine below.
 
 const QS = [
-  {
-    key: "name_dept",
-    section: "Getting Started",
-    q: "Hi there! I'm here to help kick off your video project with University Communications & Marketing. This'll just take a few minutes — I'll ask one question at a time.\n\nWhat's your name and department?"
-  },
-  {
-    key: "contact",
-    section: "Getting Started",
-    q: "What's your email address and best phone number for this project?"
-  },
-  {
-    key: "shoot_date",
-    section: "Project Details",
-    q: "What's your preferred shoot date? (If flexible, just say so.)"
-  },
-  {
-    key: "due_date",
-    section: "Project Details",
-    q: "When do you need the finished video by?"
-  },
-  {
-    key: "files",
-    section: "Project Details",
-    q: "Do you have any existing files to share — logos, scripts, b-roll footage, etc.? If not, just say none."
-  },
-  {
-    key: "project_type",
-    section: "Project Details",
-    q: "Which best describes this video? Type the number:\n\n1) Interview / Q&A\n2) Leadership Message\n3) B-Roll / Stock Footage\n4) Feature / Profile\n5) Sizzle Reel\n6) Other (describe it)"
-  },
-  {
-    key: "audience",
-    section: "Project Details",
-    q: "Who is the audience? Type all numbers that apply:\n\n1) Undergraduate Students\n2) Graduate Students\n3) Faculty\n4) Staff\n5) Alumni\n6) Parents\n7) Prospective Students\n8) General Audience"
-  },
-  {
-    key: "channels",
-    section: "Distribution",
-    q: "Where will this video live? (e.g. Pitt website, YouTube, social media, event screen, internal)"
-  },
-  {
-    key: "length",
-    section: "Distribution",
-    q: "How long should the video be? (e.g. 90 seconds, 2 minutes, 2:00–2:30)"
-  },
-  {
-    key: "description",
-    section: "The Video",
-    q: "In 3–5 sentences, describe the video: what is it, who will watch it, and where will it live?"
-  },
-  {
-    key: "key_points",
-    section: "The Video",
-    q: "What are the key messages you want viewers to take away? Please give one sentence per point."
-  },
-  {
-    key: "subject1_name",
-    section: "Interview Subjects",
-    q: "Who is your first interview subject? (Just their name — or say \"none\" if there are no on-camera subjects.)"
-  },
-  {
-    key: "subject1_contact",
-    section: "Interview Subjects",
-    q: "What's their contact info? (Email and/or phone — or \"unknown\" if you don't have it yet.)"
-  },
-  {
-    key: "subject1_point",
-    section: "Interview Subjects",
-    q: "What should they speak to specifically? What's their role in this story?"
-  },
-  {
-    key: "style",
-    section: "Creative Direction",
-    q: "Describe the visual style and tone you're going for. Think adjectives, references to other videos, or just a vibe — \"warm and personal,\" \"fast-paced and energetic,\" etc."
-  },
-  {
-    key: "scope_should",
-    section: "Creative Direction",
-    q: "Finish this sentence: \"This video should be...\""
-  },
-  {
-    key: "scope_not",
-    section: "Creative Direction",
-    q: "Now the flip side — what should this video NOT be? What should we avoid?"
-  }
+  { key:"name_dept",    section:"Getting Started",    q:"Hi there! I'm here to help kick off your video project with University Communications & Marketing. This'll just take a few minutes.\n\nWhat's your name and department?" },
+  { key:"contact",      section:"Getting Started",    q:"What's your email address and best phone number for this project?" },
+  { key:"shoot_date",   section:"Project Details",    q:"What's your preferred shoot date? (If flexible, just say so.)" },
+  { key:"due_date",     section:"Project Details",    q:"When do you need the finished video by?" },
+  { key:"files",        section:"Project Details",    q:"Do you have any existing files to share — logos, scripts, b-roll footage? If not, just say none." },
+  { key:"project_type", section:"Project Details",    q:"Which best describes this video? Type the number:\n\n1) Interview / Q&A\n2) Leadership Message\n3) B-Roll / Stock Footage\n4) Feature / Profile\n5) Sizzle Reel\n6) Other (describe it)" },
+  { key:"audience",     section:"Project Details",    q:"Who is the audience? Type all numbers that apply:\n\n1) Undergraduate Students\n2) Graduate Students\n3) Faculty\n4) Staff\n5) Alumni\n6) Parents\n7) Prospective Students\n8) General Audience" },
+  { key:"channels",     section:"Distribution",       q:"Where will this video live? (e.g. Pitt website, YouTube, social media, event screen, internal)" },
+  { key:"length",       section:"Distribution",       q:"How long should the video be? (e.g. 90 seconds, 2 minutes, 2:00–2:30)" },
+  { key:"description",  section:"The Video",          q:"In 3–5 sentences, describe the video: what is it, who will watch it, and where will it live?" },
+  { key:"key_points",   section:"The Video",          q:"What are the key messages you want viewers to take away? Please give one sentence per point." },
+  { key:"__subjects__", section:"Interview Subjects", q:null }, // handled by subject state machine
+  { key:"style",        section:"Creative Direction", q:"Describe the visual style and tone you're going for — adjectives, references to other videos, or just a vibe." },
+  { key:"scope_should", section:"Creative Direction", q:"Finish this sentence: \"This video should be...\"" },
+  { key:"scope_not",    section:"Creative Direction", q:"What should this video NOT be? What should we avoid?" },
 ];
 
-// ── PROJECT TYPE MAP ──────────────────────────────────────────────────────────
-const TYPE_MAP = {
-  "1": "Interview / Q&A",
-  "2": "Leadership Message",
-  "3": "B-Roll / Stock Footage",
-  "4": "Feature / Profile",
-  "5": "Sizzle Reel",
-  "6": "Other"
-};
-
-// ── AUDIENCE MAP ──────────────────────────────────────────────────────────────
-const AUD_MAP = {
-  "1": "Undergraduate Students",
-  "2": "Graduate Students",
-  "3": "Faculty",
-  "4": "Staff",
-  "5": "Alumni",
-  "6": "Parents",
-  "7": "Prospective Students",
-  "8": "General Audience"
-};
-
-const ALL_AUDIENCES = Object.values(AUD_MAP);
-
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const state = { step: 0, answers: {} };
+
+const answers = {
+  name_dept: null, contact: null, shoot_date: null, due_date: null,
+  files: null, project_type: null, audience_arr: [], channels: null,
+  length: null, description: null, key_points: null, subjects: [],
+  style: null, scope_should: null, scope_not: null
+};
+
+// Main flow step (index into QS)
+let step = 0;
+
+// Subject mini state machine
+// subStep: 'ask_name' | 'ask_contact' | 'ask_point' | 'ask_more' | 'done'
+let subStep = 'ask_name';
+let pendingSubject = {};
 
 // ── DOM ───────────────────────────────────────────────────────────────────────
 const chat = document.getElementById('chat');
@@ -298,14 +135,17 @@ const prg  = document.getElementById('prg');
 // ── PROGRESS ──────────────────────────────────────────────────────────────────
 function buildPrg() {
   prg.innerHTML = '';
-  QS.forEach((_, i) => {
+  // Show one dot per main question (exclude subject placeholder)
+  const visible = QS.filter(q => q.key !== '__subjects__');
+  visible.forEach((_, i) => {
     const d = document.createElement('div');
-    d.className = 'pd' + (i < state.step - 1 ? ' done' : i === state.step - 1 ? ' active' : '');
+    const effectiveStep = step > QS.findIndex(q=>q.key==='__subjects__') ? step - 1 : step;
+    d.className = 'pd' + (i < effectiveStep - 1 ? ' done' : i === effectiveStep - 1 ? ' active' : '');
     prg.appendChild(d);
   });
 }
 
-// ── CHAT UI ───────────────────────────────────────────────────────────────────
+// ── UI HELPERS ────────────────────────────────────────────────────────────────
 function scrollBot() { setTimeout(() => { chat.scrollTop = chat.scrollHeight; }, 50); }
 
 function addMsg(text, role) {
@@ -313,7 +153,7 @@ function addMsg(text, role) {
   const l = document.createElement('div'); l.className = 'lbl';
   l.textContent = role === 'bot' ? 'UCM Video' : 'You';
   const b = document.createElement('div'); b.className = 'bub'; b.textContent = text;
-  w.appendChild(l); w.appendChild(b); chat.appendChild(w); scrollBot(); return w;
+  w.appendChild(l); w.appendChild(b); chat.appendChild(w); scrollBot();
 }
 
 function addSectionLabel(text) {
@@ -338,54 +178,145 @@ function botSay(text, delay = 500) {
 }
 
 // ── ANSWER NORMALIZATION ──────────────────────────────────────────────────────
-function normalizeType(raw) {
-  const trimmed = raw.trim();
-  // If they typed a number, map it
-  for (const [num, label] of Object.entries(TYPE_MAP)) {
-    if (trimmed === num) return label;
-  }
-  // If they typed "none" or said no subjects
-  if (/^none$/i.test(trimmed)) return null;
-  // Otherwise return as-is (they described it)
-  return trimmed;
+function resolveType(raw) {
+  const t = raw.trim();
+  if (TYPE_MAP[t]) return TYPE_MAP[t];
+  // Typed a number like "1)" or "1."
+  const m = t.match(/^(\d)/);
+  if (m && TYPE_MAP[m[1]]) return TYPE_MAP[m[1]];
+  return t; // free text for Other
 }
 
-function normalizeAudience(raw) {
-  // Parse numbers and/or plain text
+function resolveAudience(raw) {
   const selected = [];
-  // Check for number mentions
-  for (const [num, label] of Object.entries(AUD_MAP)) {
-    if (raw.includes(num)) selected.push(label);
+  // Scan for digit 1-8 anywhere in the string
+  for (let n = 1; n <= 8; n++) {
+    if (raw.includes(String(n))) selected.push(AUD_LABELS[n-1]);
   }
-  // Also check plain text mentions as fallback
+  // Fallback: plain text matching
   if (selected.length === 0) {
-    for (const label of ALL_AUDIENCES) {
-      const keyword = label.split(' ')[0].toLowerCase();
-      if (raw.toLowerCase().includes(keyword)) selected.push(label);
+    for (const label of AUD_LABELS) {
+      if (raw.toLowerCase().includes(label.toLowerCase().split(' ')[0])) selected.push(label);
     }
   }
-  return selected; // array
+  return selected;
+}
+
+// ── SUBJECT MINI STATE MACHINE ────────────────────────────────────────────────
+// Called when step is at the __subjects__ slot.
+// Returns true when subjects are done and we should advance to next main question.
+
+async function handleSubject(userText) {
+  const t = userText.trim();
+
+  if (subStep === 'ask_name') {
+    // First time arriving here — bot already asked "who is your first subject?"
+    if (/^(none|no one|nobody|n\/a|no subjects?|skip)$/i.test(t)) {
+      answers.subjects = [];
+      subStep = 'done';
+      return true; // advance past subjects
+    }
+    pendingSubject = { name: t };
+    subStep = 'ask_contact';
+    await botSay(`What's ${t}'s contact info? (Email and/or phone — or "unknown" if you don't have it yet.)`, 400);
+    return false;
+  }
+
+  if (subStep === 'ask_contact') {
+    pendingSubject.contact = /^(unknown|none|n\/a|not sure|don'?t have it?)$/i.test(t) ? '' : t;
+    subStep = 'ask_point';
+    await botSay(`What should ${pendingSubject.name} speak to? What's their role in this story?`, 400);
+    return false;
+  }
+
+  if (subStep === 'ask_point') {
+    pendingSubject.point = t;
+    answers.subjects.push({ ...pendingSubject });
+    pendingSubject = {};
+    subStep = 'ask_more';
+    await botSay(`Got it! Is there another interview subject? (Type their name, or say "done" if that's everyone.)`, 400);
+    return false;
+  }
+
+  if (subStep === 'ask_more') {
+    if (/^(done|no|nope|none|that'?s (all|it|everyone)|no more)$/i.test(t)) {
+      subStep = 'done';
+      return true; // advance past subjects
+    }
+    // Another subject — start the loop again
+    pendingSubject = { name: t };
+    subStep = 'ask_contact';
+    await botSay(`What's ${t}'s contact info? (Email and/or phone — or "unknown" if you don't have it yet.)`, 400);
+    return false;
+  }
+
+  return false;
+}
+
+// ── MAIN ADVANCE FUNCTION ─────────────────────────────────────────────────────
+async function advance(userText) {
+
+  // Very first message — just show opening question, no answer to store
+  if (step === 0) {
+    await botSay(QS[0].q, 300);
+    step = 1; buildPrg(); return;
+  }
+
+  const currentQ = QS[step - 1];
+
+  // ── Subject block ────────────────────────────────────────────────────────────
+  if (currentQ.key === '__subjects__') {
+    const done = await handleSubject(userText);
+    if (!done) return; // stay in subject block
+    // Subjects complete — fall through to advance
+  } else {
+    // ── Normal answer storage ────────────────────────────────────────────────
+    if (currentQ.key === 'project_type') {
+      answers.project_type = resolveType(userText);
+    } else if (currentQ.key === 'audience') {
+      const arr = resolveAudience(userText);
+      answers.audience_arr = arr;
+      answers.audience = arr.join(', ') || userText;
+    } else {
+      answers[currentQ.key] = userText;
+    }
+  }
+
+  // ── Move to next question ────────────────────────────────────────────────────
+  const nextQ = QS[step];
+  if (!nextQ) { await finish(); return; }
+
+  // Show section label when section changes
+  if (nextQ.section !== currentQ.section) {
+    addSectionLabel(nextQ.section);
+  }
+
+  step++;
+  buildPrg();
+
+  // Subject placeholder — ask opening subject question directly
+  if (nextQ.key === '__subjects__') {
+    subStep = 'ask_name';
+    pendingSubject = {};
+    await botSay("Who do you want on camera? Give me the name of your first interview subject — or say \"none\" if there are no on-camera subjects.", 500);
+    return;
+  }
+
+  await botSay(nextQ.q);
 }
 
 // ── PDF ENGINE ────────────────────────────────────────────────────────────────
-function esc(s) {
-  return String(s || '').replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
-}
+function esc(s) { return String(s||'').replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)'); }
 
 function wrapLines(text, maxChars) {
   if (!text) return ['[MISSING]'];
   const out = [];
   for (const para of text.split('\n')) {
     if (!para.trim()) { out.push(''); continue; }
-    const words = para.split(' ');
-    let line = '';
+    const words = para.split(' '); let line = '';
     for (const w of words) {
-      if ((line + ' ' + w).trim().length > maxChars) {
-        if (line) out.push(line.trim());
-        line = w;
-      } else {
-        line = (line + ' ' + w).trim();
-      }
+      if ((line+' '+w).trim().length > maxChars) { if (line) out.push(line.trim()); line = w; }
+      else line = (line+' '+w).trim();
     }
     if (line) out.push(line);
   }
@@ -393,435 +324,246 @@ function wrapLines(text, maxChars) {
 }
 
 function makePDF(a) {
-  const PW = 612, PH = 792, ML = 50, MR = 50, CW = PW - ML - MR;
-  const BLUE  = '0.008 0.212 0.573';
-  const LBLUE = '0.820 0.855 0.918';
-  const LGRAY = '0.949 0.949 0.949';
-  const WHITE = '1 1 1';
-  const BLACK = '0 0 0';
-  const RED   = '0.8 0 0';
-  const MGRAY = '0.5 0.5 0.5';
-  const GOLD  = '0.600 0.490 0.020';
+  const PW=612, PH=792, ML=50, MR=50, CW=PW-ML-MR;
+  const BLUE='0.008 0.212 0.573', LBLUE='0.820 0.855 0.918', LGRAY='0.949 0.949 0.949';
+  const WHITE='1 1 1', BLACK='0 0 0', RED='0.8 0 0', MGRAY='0.5 0.5 0.5', GOLD='0.600 0.490 0.020';
 
-  const pages = [];
-  let ops = [], cy = PH - 50;
-
-  function newPage() { pages.push([...ops]); ops = []; cy = PH - 50; }
-  function checkSpace(n) { if (cy - n < 58) newPage(); }
-
-  function fillRect(x,y,w,h,rgb)      { ops.push(`${rgb} rg ${x} ${y} ${w} ${h} re f`); }
+  const pages=[]; let ops=[], cy=PH-50;
+  function newPage() { pages.push([...ops]); ops=[]; cy=PH-50; }
+  function checkSpace(n) { if (cy-n < 58) newPage(); }
+  function fillRect(x,y,w,h,rgb) { ops.push(`${rgb} rg ${x} ${y} ${w} ${h} re f`); }
   function strokeRect(x,y,w,h,lw=0.5) { ops.push(`${lw} w 0.75 0.75 0.75 RG ${x} ${y} ${w} ${h} re S`); }
-  function txt(t,x,y,font,size,rgb=BLACK) {
-    if (!t) return;
-    ops.push(`BT /${font} ${size} Tf ${rgb} rg ${x} ${y} Td (${esc(String(t))}) Tj ET`);
-  }
-  function checkbox(x, y, checked) {
-    strokeRect(x, y, 10, 10, 0.5);
-    if (checked) ops.push(`${BLUE} rg ${x+2} ${y+2} 6 6 re f`);
-  }
+  function txt(t,x,y,font,size,rgb=BLACK) { if(!t) return; ops.push(`BT /${font} ${size} Tf ${rgb} rg ${x} ${y} Td (${esc(String(t))}) Tj ET`); }
+  function checkbox(x,y,checked) { strokeRect(x,y,10,10,0.5); if(checked) ops.push(`${BLUE} rg ${x+2} ${y+2} 6 6 re f`); }
 
   function sectionBar(label) {
-    checkSpace(26);
-    fillRect(ML, cy-16, CW, 18, BLUE);
-    txt(label, ML+6, cy-11, 'Hb', 9, WHITE);
-    cy -= 24;
+    checkSpace(26); fillRect(ML,cy-16,CW,18,BLUE); txt(label,ML+6,cy-11,'Hb',9,WHITE); cy-=24;
   }
-
   function fieldRow(label, value, lw=140) {
     checkSpace(22);
-    const isMiss = !value || value === '[MISSING]';
-    const display = isMiss ? '[MISSING]' : String(value);
-    fillRect(ML,        cy-14, lw,     18, LBLUE);
-    fillRect(ML+lw,     cy-14, CW-lw,  18, WHITE);
-    strokeRect(ML,      cy-14, lw,     18);
-    strokeRect(ML+lw,   cy-14, CW-lw,  18);
-    txt(label, ML+4,    cy-9, 'Hb', 8, BLACK);
-    txt(display.length > 70 ? display.substring(0,70)+'...' : display,
-        ML+lw+5, cy-9, isMiss?'Hb':'Hr', 8, isMiss?RED:BLACK);
-    cy -= 20;
+    const isMiss=!value||value==='[MISSING]';
+    const display=isMiss?'[MISSING]':String(value);
+    fillRect(ML,cy-14,lw,18,LBLUE); fillRect(ML+lw,cy-14,CW-lw,18,WHITE);
+    strokeRect(ML,cy-14,lw,18); strokeRect(ML+lw,cy-14,CW-lw,18);
+    txt(label,ML+4,cy-9,'Hb',8,BLACK);
+    txt(display.length>70?display.substring(0,70)+'...':display, ML+lw+5,cy-9,isMiss?'Hb':'Hr',8,isMiss?RED:BLACK);
+    cy-=20;
   }
-
   function textBlock(label, value) {
-    const lines = wrapLines(value, 82);
-    const bh = Math.max(32, lines.length * 13 + 16);
-    checkSpace(bh + 20);
-    const isMiss = !value;
-    fillRect(ML, cy-14, CW, 14, LBLUE);
-    strokeRect(ML, cy-14, CW, 14);
-    txt(label, ML+5, cy-10, 'Hb', 8, BLACK);
-    cy -= 14;
-    fillRect(ML, cy-bh, CW, bh, WHITE);
-    strokeRect(ML, cy-bh, CW, bh);
-    lines.forEach((line, i) => {
-      if (line) txt(line, ML+6, cy-13-(i*13), isMiss?'Hb':'Hr', 8.5, isMiss?RED:BLACK);
-    });
-    cy -= (bh + 6);
+    const lines=wrapLines(value,82); const bh=Math.max(32,lines.length*13+16);
+    checkSpace(bh+20); const isMiss=!value;
+    fillRect(ML,cy-14,CW,14,LBLUE); strokeRect(ML,cy-14,CW,14); txt(label,ML+5,cy-10,'Hb',8,BLACK);
+    cy-=14; fillRect(ML,cy-bh,CW,bh,WHITE); strokeRect(ML,cy-bh,CW,bh);
+    lines.forEach((line,i)=>{ if(line) txt(line,ML+6,cy-13-(i*13),isMiss?'Hb':'Hr',8.5,isMiss?RED:BLACK); });
+    cy-=(bh+6);
   }
 
-  // ── TITLE BANNER ────────────────────────────────────────────────────────────
-  fillRect(ML, cy-44, CW, 46, BLUE);
-  txt('VIDEO PRE-PRODUCTION CREATIVE BRIEF', ML+10, cy-18, 'Hb', 13, WHITE);
-  txt('University Communications & Marketing  —  University of Pittsburgh', ML+10, cy-31, 'Hr', 8, '0.75 0.85 1.0');
-  cy -= 54;
+  // Title
+  fillRect(ML,cy-44,CW,46,BLUE);
+  txt('VIDEO PRE-PRODUCTION CREATIVE BRIEF',ML+10,cy-18,'Hb',13,WHITE);
+  txt('University Communications & Marketing  —  University of Pittsburgh',ML+10,cy-31,'Hr',8,'0.75 0.85 1.0');
+  cy-=54;
 
-  // ── INSTRUCTIONS BOX ────────────────────────────────────────────────────────
+  // Instructions box
   checkSpace(46);
-  fillRect(ML, cy-42, CW, 44, '0.937 0.949 0.969');
-  strokeRect(ML, cy-42, CW, 44);
+  fillRect(ML,cy-42,CW,44,'0.937 0.949 0.969'); strokeRect(ML,cy-42,CW,44);
   ops.push(`0.4 w ${GOLD} RG ${ML} ${cy+2} m ${ML} ${cy-42} l S`);
-  txt('This PDF is editable. Please review, fill in any missing details, and email the completed brief to:', ML+8, cy-11, 'Hr', 8.5, BLACK);
-  txt('Jim Vastine:  jvastine@pitt.edu', ML+8, cy-24, 'Hb', 8.5, BLUE);
-  txt('Brad King:  bradking@pitt.edu',   ML+240, cy-24, 'Hb', 8.5, BLUE);
-  txt('Questions? Contact UCM at (412) 624-0000', ML+8, cy-37, 'Hr', 7.5, MGRAY);
-  cy -= 52;
+  txt('This PDF is editable. Please review, fill in missing details, and email the completed brief to:',ML+8,cy-11,'Hr',8.5,BLACK);
+  txt('Jim Vastine:  jvastine@pitt.edu',ML+8,cy-24,'Hb',8.5,BLUE);
+  txt('Brad King:  bradking@pitt.edu',ML+240,cy-24,'Hb',8.5,BLUE);
+  txt('Questions? Contact UCM at (412) 624-0000',ML+8,cy-37,'Hr',7.5,MGRAY);
+  cy-=52;
 
-  // ── PROJECT DETAILS ──────────────────────────────────────────────────────────
+  // Project Details
   sectionBar('PROJECT DETAILS');
-  fieldRow('Requested By / Dept',    a.name_dept,   155);
-  fieldRow('Primary Contact',        a.contact,     155);
-
-  // Dates — side by side
+  fieldRow('Requested By / Dept', a.name_dept, 155);
+  fieldRow('Primary Contact', a.contact, 155);
+  // Dates side by side
   checkSpace(22);
-  const hw = CW / 2;
-  fillRect(ML,      cy-14, 75,     18, LBLUE); fillRect(ML+75,    cy-14, hw-75,  18, WHITE);
-  fillRect(ML+hw,   cy-14, 75,     18, LBLUE); fillRect(ML+hw+75, cy-14, hw-75,  18, WHITE);
-  strokeRect(ML,    cy-14, 75,     18); strokeRect(ML+75,    cy-14, hw-75,  18);
-  strokeRect(ML+hw, cy-14, 75,     18); strokeRect(ML+hw+75, cy-14, hw-75,  18);
-  txt('Shoot Date', ML+4,    cy-9, 'Hb', 8, BLACK);
-  txt('Due Date',   ML+hw+4, cy-9, 'Hb', 8, BLACK);
-  const sd = a.shoot_date, dd = a.due_date;
-  txt(sd||'[MISSING]', ML+79,    cy-9, sd?'Hr':'Hb', 8, sd?BLACK:RED);
-  txt(dd||'[MISSING]', ML+hw+79, cy-9, dd?'Hr':'Hb', 8, dd?BLACK:RED);
-  cy -= 24;
+  const hw=CW/2;
+  fillRect(ML,cy-14,75,18,LBLUE); fillRect(ML+75,cy-14,hw-75,18,WHITE);
+  fillRect(ML+hw,cy-14,75,18,LBLUE); fillRect(ML+hw+75,cy-14,hw-75,18,WHITE);
+  strokeRect(ML,cy-14,75,18); strokeRect(ML+75,cy-14,hw-75,18);
+  strokeRect(ML+hw,cy-14,75,18); strokeRect(ML+hw+75,cy-14,hw-75,18);
+  txt('Shoot Date',ML+4,cy-9,'Hb',8,BLACK); txt('Due Date',ML+hw+4,cy-9,'Hb',8,BLACK);
+  txt(a.shoot_date||'[MISSING]',ML+79,cy-9,a.shoot_date?'Hr':'Hb',8,a.shoot_date?BLACK:RED);
+  txt(a.due_date||'[MISSING]',ML+hw+79,cy-9,a.due_date?'Hr':'Hb',8,a.due_date?BLACK:RED);
+  cy-=24;
+  fieldRow('Files from Partner', a.files, 155);
+  fieldRow('Videographer Assigned', null, 155);
+  cy-=4;
 
-  fieldRow('Files from Partner',     a.files,       155);
-  fieldRow('Videographer Assigned',  null,          155); // always blank at intake
-  cy -= 4;
-
-  // ── PROJECT TYPE ────────────────────────────────────────────────────────────
+  // Project Type
   sectionBar('PROJECT TYPE  (check one)');
-  const TYPE_LABELS = ['Interview / Q&A','Leadership Message','B-Roll / Stock Footage','Feature / Profile','Sizzle Reel','Other'];
-  const selectedType = a.project_type || '';
-  TYPE_LABELS.forEach((t, i) => {
+  ['Interview / Q&A','Leadership Message','B-Roll / Stock Footage','Feature / Profile','Sizzle Reel','Other'].forEach((t,i)=>{
     checkSpace(18);
-    fillRect(ML, cy-14, CW, 16, i%2===0?WHITE:LGRAY);
-    strokeRect(ML, cy-14, CW, 16);
-    const checked = selectedType === t || (t === 'Other' && selectedType && !TYPE_LABELS.slice(0,-1).includes(selectedType));
-    checkbox(ML+6, cy-12, checked);
-    txt(t, ML+22, cy-10, checked?'Hb':'Hr', 8.5, checked?BLUE:BLACK);
-    cy -= 16;
+    fillRect(ML,cy-14,CW,16,i%2===0?WHITE:LGRAY); strokeRect(ML,cy-14,CW,16);
+    const sel = a.project_type||'';
+    const checked = sel===t || (t==='Other' && sel && !['Interview / Q&A','Leadership Message','B-Roll / Stock Footage','Feature / Profile','Sizzle Reel'].includes(sel));
+    checkbox(ML+6,cy-12,checked);
+    txt(t,ML+22,cy-10,checked?'Hb':'Hr',8.5,checked?BLUE:BLACK);
+    if (checked && t==='Other' && sel && sel!=='Other') txt('('+sel+')',ML+80,cy-10,'Hr',8,MGRAY);
+    cy-=16;
   });
-  // If "Other" and custom text, show it
-  if (selectedType && !TYPE_LABELS.slice(0,-1).includes(selectedType) && selectedType !== 'Other') {
-    checkSpace(16);
-    txt('Other: ' + selectedType, ML+22, cy-10, 'Hr', 8, BLACK);
-    cy -= 16;
-  }
-  cy -= 6;
+  cy-=6;
 
-  // ── AUDIENCE ────────────────────────────────────────────────────────────────
+  // Audience
   sectionBar('AUDIENCE  (check all that apply)');
-  const selectedAudience = a.audience_arr || []; // array from normalizeAudience
-  ALL_AUDIENCES.forEach((t, i) => {
+  AUD_LABELS.forEach((t,i)=>{
     checkSpace(18);
-    fillRect(ML, cy-14, CW, 16, i%2===0?WHITE:LGRAY);
-    strokeRect(ML, cy-14, CW, 16);
-    const checked = selectedAudience.includes(t);
-    checkbox(ML+6, cy-12, checked);
-    txt(t, ML+22, cy-10, checked?'Hb':'Hr', 8.5, checked?BLUE:BLACK);
-    cy -= 16;
+    fillRect(ML,cy-14,CW,16,i%2===0?WHITE:LGRAY); strokeRect(ML,cy-14,CW,16);
+    const checked=(a.audience_arr||[]).includes(t);
+    checkbox(ML+6,cy-12,checked);
+    txt(t,ML+22,cy-10,checked?'Hb':'Hr',8.5,checked?BLUE:BLACK);
+    cy-=16;
   });
-  cy -= 6;
+  cy-=6;
 
-  // ── DISTRIBUTION ────────────────────────────────────────────────────────────
+  // Distribution
   sectionBar('DISTRIBUTION');
-  fieldRow('Use / Channels',  a.channels, 140);
-  fieldRow('Expected Length', a.length,   140);
-  cy -= 4;
+  fieldRow('Use / Channels', a.channels, 140);
+  fieldRow('Expected Length', a.length, 140);
+  cy-=4;
 
-  // ── PROJECT DESCRIPTION ─────────────────────────────────────────────────────
+  // Project Description
   sectionBar('PROJECT DESCRIPTION');
-  textBlock('Describe the end product — what is this video, who will watch it, where will it live? (3–5 sentences)', a.description);
+  textBlock('What is this video, who will watch it, and where will it live? (3–5 sentences)', a.description);
 
-  // ── KEY POINTS ──────────────────────────────────────────────────────────────
+  // Key Points
   sectionBar('KEY POINTS');
-  textBlock('Major messages you want viewers to take away — one sentence each', a.key_points);
+  textBlock('Major messages — one sentence each', a.key_points);
 
-  // ── INTERVIEW SUBJECTS ──────────────────────────────────────────────────────
+  // Interview Subjects
   sectionBar('INTERVIEW SUBJECTS');
   checkSpace(20);
-  const scols = [140, 130, CW - 270];
-  ['Name', 'Contact', 'Key Point to Discuss'].forEach((h, i) => {
-    const x = ML + (i === 0 ? 0 : i === 1 ? scols[0] : scols[0] + scols[1]);
-    fillRect(x, cy-14, scols[i], 14, BLUE);
-    strokeRect(x, cy-14, scols[i], 14);
-    txt(h, x+4, cy-10, 'Hb', 8, WHITE);
+  const scols=[140,130,CW-270];
+  ['Name','Contact','Key Point to Discuss'].forEach((h,i)=>{
+    const x=ML+(i===0?0:i===1?scols[0]:scols[0]+scols[1]);
+    fillRect(x,cy-14,scols[i],14,BLUE); strokeRect(x,cy-14,scols[i],14);
+    txt(h,x+4,cy-10,'Hb',8,WHITE);
   });
-  cy -= 14;
+  cy-=14;
 
-  // Subject rows — one per subject collected
-  const subjects = a.subjects || []; // array of {name, contact, point}
-  const rowsToShow = Math.max(subjects.length, 2); // show at least 2 rows
-  for (let i = 0; i < rowsToShow; i++) {
-    const sub = subjects[i] || {};
-    const rh = 20;
-    checkSpace(rh + 2);
-    const bg = i%2===0?WHITE:LGRAY;
-    let ax = ML;
-    scols.forEach(cw => { fillRect(ax, cy-rh+2, cw, rh, bg); strokeRect(ax, cy-rh+2, cw, rh); ax += cw; });
-    if (sub.name)  txt(sub.name,  ML+5,                   cy-11, 'Hr', 8, BLACK);
-    if (sub.contact) txt(sub.contact, ML+scols[0]+5,      cy-11, 'Hr', 8, BLACK);
-    if (sub.point) {
-      const pt = sub.point.length > 34 ? sub.point.substring(0,34)+'...' : sub.point;
-      txt(pt, ML+scols[0]+scols[1]+5, cy-11, 'Hr', 8, BLACK);
-    }
-    cy -= rh;
+  const subs = a.subjects||[];
+  const rowCount = Math.max(subs.length, 2);
+  for (let i=0; i<rowCount; i++) {
+    const s=subs[i]||{};
+    checkSpace(22);
+    const bg=i%2===0?WHITE:LGRAY;
+    let ax=ML;
+    scols.forEach(cw=>{ fillRect(ax,cy-14,cw,18,bg); strokeRect(ax,cy-14,cw,18); ax+=cw; });
+    if(s.name)    txt(s.name.substring(0,22),    ML+5,               cy-9,'Hr',8,BLACK);
+    if(s.contact) txt(s.contact.substring(0,22), ML+scols[0]+5,      cy-9,'Hr',8,BLACK);
+    if(s.point)   txt(s.point.substring(0,38),   ML+scols[0]+scols[1]+5, cy-9,'Hr',8,BLACK);
+    cy-=18;
   }
-  cy -= 6;
+  cy-=6;
 
-  // ── AESTHETIC STYLE ─────────────────────────────────────────────────────────
+  // Aesthetic Style
   sectionBar('AESTHETIC STYLE');
   textBlock('Visual or tonal direction — adjectives, references, mood', a.style);
 
-  // ── SCOPE ────────────────────────────────────────────────────────────────────
+  // Scope
   sectionBar('SCOPE');
   textBlock('What this SHOULD be', a.scope_should);
   textBlock('What this should NOT be', a.scope_not);
 
-  // ── APPROVAL WORKFLOW ────────────────────────────────────────────────────────
+  // Approval Workflow
   checkSpace(140);
   sectionBar('APPROVAL WORKFLOW');
-  const acols = [208, 128, 118, 58];
-  let ax = ML;
-  ['Stage', 'Who', 'Sign-Off Names', 'Date'].forEach((h, i) => {
-    fillRect(ax, cy-14, acols[i], 14, BLUE);
-    strokeRect(ax, cy-14, acols[i], 14);
-    txt(h, ax+4, cy-10, 'Hb', 8, WHITE);
-    ax += acols[i];
+  const acols=[208,128,118,58];
+  let ax2=ML;
+  ['Stage','Who','Sign-Off Names','Date'].forEach((h,i)=>{
+    fillRect(ax2,cy-14,acols[i],14,BLUE); strokeRect(ax2,cy-14,acols[i],14);
+    txt(h,ax2+4,cy-10,'Hb',8,WHITE); ax2+=acols[i];
   });
-  cy -= 14;
-  [
-    ['Intake — Brief Approved',                     'Creative Director + Client'],
-    ['Pre-Production — Treatment, Script, Logistics','UCM + Client'],
-    ['Post: Rough Cut',                              'UCM'],
-    ['Post: Early Cut',                              'UCM + Client'],
-    ['Final Cut + Close Out',                        'Creative Director + Client'],
-  ].forEach(([stage, who], i) => {
-    checkSpace(18);
-    ax = ML;
-    acols.forEach(cw => {
-      fillRect(ax, cy-14, cw, 16, i%2===0?WHITE:LGRAY);
-      strokeRect(ax, cy-14, cw, 16);
-      ax += cw;
-    });
-    txt(stage, ML+4,          cy-10, 'Hr', 7.5, BLACK);
-    txt(who,   ML+acols[0]+4, cy-10, 'Hr', 7.5, BLACK);
-    cy -= 16;
+  cy-=14;
+  [['Intake — Brief Approved','Creative Director + Client'],
+   ['Pre-Production — Treatment, Script, Logistics','UCM + Client'],
+   ['Post: Rough Cut','UCM'],
+   ['Post: Early Cut','UCM + Client'],
+   ['Final Cut + Close Out','Creative Director + Client']
+  ].forEach(([stage,who],i)=>{
+    checkSpace(18); ax2=ML;
+    acols.forEach(cw=>{ fillRect(ax2,cy-14,cw,16,i%2===0?WHITE:LGRAY); strokeRect(ax2,cy-14,cw,16); ax2+=cw; });
+    txt(stage,ML+4,cy-10,'Hr',7.5,BLACK); txt(who,ML+acols[0]+4,cy-10,'Hr',7.5,BLACK);
+    cy-=16;
   });
 
-  newPage(); // flush last page
+  newPage();
 
-  // Footers on every page
-  pages.forEach((pg, i) => {
+  // Footers
+  pages.forEach((pg,i)=>{
     pg.push(`0.5 w 0.85 0.85 0.85 RG ${ML} 42 m ${PW-MR} 42 l S`);
     pg.push(`BT /Hr 7 Tf 0.55 0.55 0.55 rg ${ML} 30 Td (University Communications & Marketing  |  Video Pre-Production Brief  |  Page ${i+1} of ${pages.length}) Tj ET`);
   });
 
-  // Build binary PDF
-  const enc = new TextEncoder();
-  const parts = []; let offset = 0; const offsets = [];
-  function w(s) { const b = enc.encode(s); parts.push(b); offset += b.length; }
-
+  // Build binary
+  const enc=new TextEncoder(); const parts=[]; let offset=0; const offsets=[];
+  function w(s){ const b=enc.encode(s); parts.push(b); offset+=b.length; }
   w('%PDF-1.4\n');
-  offsets[1] = offset; w(`1 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>\nendobj\n`);
-  offsets[2] = offset; w(`2 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>\nendobj\n`);
-
-  const contentIds = [];
-  pages.forEach((pg, idx) => {
-    const id = idx + 3; contentIds.push(id);
-    const stream = pg.join('\n');
-    offsets[id] = offset;
+  offsets[1]=offset; w(`1 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>\nendobj\n`);
+  offsets[2]=offset; w(`2 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>\nendobj\n`);
+  const contentIds=[];
+  pages.forEach((pg,idx)=>{
+    const id=idx+3; contentIds.push(id);
+    const stream=pg.join('\n'); offsets[id]=offset;
     w(`${id} 0 obj\n<< /Length ${enc.encode(stream).length} >>\nstream\n${stream}\nendstream\nendobj\n`);
   });
-
-  const pageObjIds = [];
-  pages.forEach((_, i) => {
-    const id = pages.length + 3 + i; pageObjIds.push(id);
-    offsets[id] = offset;
+  const pageObjIds=[];
+  pages.forEach((_,i)=>{
+    const id=pages.length+3+i; pageObjIds.push(id); offsets[id]=offset;
     w(`${id} 0 obj\n<< /Type /Page /Parent ${pages.length*2+3} 0 R /MediaBox [0 0 ${PW} ${PH}] /Contents ${contentIds[i]} 0 R /Resources << /Font << /Hr 1 0 R /Hb 2 0 R >> >> >>\nendobj\n`);
   });
-
-  const pdid = pages.length * 2 + 3; offsets[pdid] = offset;
+  const pdid=pages.length*2+3; offsets[pdid]=offset;
   w(`${pdid} 0 obj\n<< /Type /Pages /Kids [${pageObjIds.map(id=>`${id} 0 R`).join(' ')}] /Count ${pages.length} >>\nendobj\n`);
-
-  const catid = pdid + 1; offsets[catid] = offset;
+  const catid=pdid+1; offsets[catid]=offset;
   w(`${catid} 0 obj\n<< /Type /Catalog /Pages ${pdid} 0 R >>\nendobj\n`);
-
-  const xrefOffset = offset;
-  const maxId = catid;
+  const xrefOffset=offset; const maxId=catid;
   w(`xref\n0 ${maxId+1}\n0000000000 65535 f \n`);
-  for (let i = 1; i <= maxId; i++) w(`${String(offsets[i]||0).padStart(10,'0')} 00000 n \n`);
+  for(let i=1;i<=maxId;i++) w(`${String(offsets[i]||0).padStart(10,'0')} 00000 n \n`);
   w(`trailer\n<< /Size ${maxId+1} /Root ${catid} 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`);
-
-  const total = parts.reduce((s, p) => s + p.length, 0);
-  const buf = new Uint8Array(total); let pos = 0;
-  for (const p of parts) { buf.set(p, pos); pos += p.length; }
+  const total=parts.reduce((s,p)=>s+p.length,0);
+  const buf=new Uint8Array(total); let pos=0;
+  for(const p of parts){ buf.set(p,pos); pos+=p.length; }
   return buf;
 }
 
-// ── FLOW CONTROL ──────────────────────────────────────────────────────────────
-
-// Track subjects separately since it's multi-turn
-let subjectCount = 1;
-let collectingSubjects = false;
-let currentSubject = {};
-
+// ── FINISH ────────────────────────────────────────────────────────────────────
 async function finish() {
-  sb.disabled = true; inp.disabled = true;
+  sb.disabled=true; inp.disabled=true;
   await botSay("That's everything — generating your brief now...", 600);
   try {
-    const pdfBytes = makePDF(state.answers);
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const pdfBytes = makePDF(answers);
+    const blob = new Blob([pdfBytes],{type:'application/pdf'});
     const url = URL.createObjectURL(blob);
 
-    const w = document.createElement('div'); w.className = 'msg bot';
-    const l = document.createElement('div'); l.className = 'lbl'; l.textContent = 'UCM Video';
-    const b = document.createElement('div'); b.className = 'bub';
-    b.textContent = "Your brief is ready! The PDF is editable — you can fill in anything still marked [MISSING] before sending it to the team.";
+    const w=document.createElement('div'); w.className='msg bot';
+    const l=document.createElement('div'); l.className='lbl'; l.textContent='UCM Video';
+    const b=document.createElement('div'); b.className='bub';
+    b.textContent="Your brief is ready! The PDF is editable — fill in anything marked [MISSING] before sending it to the team.";
     w.appendChild(l); w.appendChild(b);
-
-    const row = document.createElement('div'); row.className = 'arow';
-    const dl = document.createElement('a');
-    dl.className = 'abtn pri';
-    dl.href = url;
-    dl.download = 'UCM_Video_Brief.pdf';
-    dl.innerHTML = '<i class="ti ti-download"></i> Download brief PDF';
-    row.appendChild(dl);
-    w.appendChild(row);
-    chat.appendChild(w);
-    scrollBot(); buildPrg();
+    const row=document.createElement('div'); row.className='arow';
+    const dl=document.createElement('a');
+    dl.className='abtn pri'; dl.href=url; dl.download='UCM_Video_Brief.pdf';
+    dl.innerHTML='<i class="ti ti-download"></i> Download brief PDF';
+    row.appendChild(dl); w.appendChild(row);
+    chat.appendChild(w); scrollBot(); buildPrg();
 
     await botSay("Once reviewed, email your brief to:\njvastine@pitt.edu  or  bradking@pitt.edu\n\nWe'll be in touch soon!", 900);
   } catch(e) {
-    await botSay("Something went wrong generating the PDF: " + e.message, 400);
+    await botSay("Something went wrong generating the PDF: "+e.message, 400);
   }
 }
 
-async function askNextSubject() {
-  subjectCount++;
-  await botSay(`Got it! Is there another interview subject? (Type their name, or say "done" if that's everyone.)`, 400);
-}
-
-async function advance(userText) {
-  // First message — just show opening question
-  if (state.step === 0) {
-    await botSay(QS[0].q, 300);
-    state.step = 1; buildPrg(); return;
-  }
-
-  const currentQ = QS[state.step - 1];
-
-  // ── Special handling: subject follow-ups ──────────────────────────────────
-  if (collectingSubjects) {
-    if (currentQ.key === 'subject1_name' || currentQ.key === '__subject_name__') {
-      if (/^(done|no|none|that'?s (all|it|everyone)|no more|nope)$/i.test(userText.trim())) {
-        // Done collecting subjects — move on
-        collectingSubjects = false;
-        state.step = QS.findIndex(q => q.key === 'style') + 1;
-        addSectionLabel(QS[state.step - 1].section);
-        await botSay(QS[state.step - 1].q); buildPrg(); return;
-      }
-      // Start a new subject
-      currentSubject = { name: userText };
-      await botSay(`What's ${userText}'s contact info? (Email and/or phone, or "unknown")`); return;
-    }
-    if (currentQ.key === '__subject_contact__') {
-      currentSubject.contact = /^(unknown|none|n\/a|not sure|don'?t have)$/i.test(userText.trim()) ? '' : userText;
-      await botSay(`What should ${currentSubject.name} speak to? What's their role in this story?`); return;
-    }
-    if (currentQ.key === '__subject_point__') {
-      currentSubject.point = userText;
-      state.answers.subjects = state.answers.subjects || [];
-      state.answers.subjects.push({ ...currentSubject });
-      currentSubject = {};
-      await askNextSubject();
-      // Temporarily set step to the subject_name slot so next answer routes correctly
-      QS[state.step - 1] = { key: 'subject1_name', q: '' };
-      return;
-    }
-  }
-
-  // ── Normal question handling ──────────────────────────────────────────────
-  // Store answer
-  const key = currentQ.key;
-
-  if (key === 'project_type') {
-    state.answers.project_type = normalizeType(userText);
-  } else if (key === 'audience') {
-    const arr = normalizeAudience(userText);
-    state.answers.audience_arr = arr;
-    state.answers.audience = arr.join(', ') || userText;
-  } else if (key === 'subject1_name') {
-    if (/^(none|no one|nobody|n\/a)$/i.test(userText.trim())) {
-      state.answers.subjects = [];
-      // Skip all subject questions
-      state.step = QS.findIndex(q => q.key === 'style') + 1;
-      addSectionLabel(QS[state.step - 1].section);
-      await botSay(QS[state.step - 1].q); buildPrg(); return;
-    }
-    currentSubject = { name: userText };
-    collectingSubjects = true;
-    // Temporarily hijack next keys for dynamic subject follow-ups
-    QS[state.step] = { key: '__subject_contact__', q: '' };
-    await botSay(`What's ${userText}'s contact info? (Email and/or phone, or "unknown")`);
-    state.step++; buildPrg(); return;
-  } else if (key === '__subject_contact__') {
-    currentSubject.contact = /^(unknown|none|n\/a|not sure|don'?t have)$/i.test(userText.trim()) ? '' : userText;
-    QS[state.step] = { key: '__subject_point__', q: '' };
-    await botSay(`What should ${currentSubject.name} speak to? What's their role in this story?`);
-    state.step++; buildPrg(); return;
-  } else if (key === '__subject_point__') {
-    currentSubject.point = userText;
-    state.answers.subjects = state.answers.subjects || [];
-    state.answers.subjects.push({ ...currentSubject });
-    currentSubject = {};
-    collectingSubjects = true;
-    QS[state.step] = { key: 'subject1_name', q: '' };
-    await askNextSubject();
-    buildPrg(); return;
-  } else {
-    state.answers[key] = userText;
-  }
-
-  // Show section label when entering a new section
-  const nextQ = QS[state.step];
-  if (nextQ) {
-    const prevSection = currentQ.section;
-    const nextSection = nextQ.section;
-    if (nextSection && nextSection !== prevSection) {
-      addSectionLabel(nextSection);
-    }
-    await botSay(nextQ.q);
-    state.step++; buildPrg();
-  } else {
-    await finish();
-  }
-}
-
-// ── EVENT LISTENERS ───────────────────────────────────────────────────────────
+// ── INPUT HANDLING ────────────────────────────────────────────────────────────
 sb.addEventListener('click', send);
-inp.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
-});
-inp.addEventListener('input', () => {
-  inp.style.height = 'auto';
-  inp.style.height = Math.min(inp.scrollHeight, 100) + 'px';
-});
+inp.addEventListener('keydown', e => { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} });
+inp.addEventListener('input', () => { inp.style.height='auto'; inp.style.height=Math.min(inp.scrollHeight,100)+'px'; });
 
 function send() {
-  const t = inp.value.trim();
-  if (!t || inp.disabled) return;
-  addMsg(t, 'user'); inp.value = ''; inp.style.height = 'auto'; advance(t);
+  const t=inp.value.trim(); if(!t||inp.disabled) return;
+  addMsg(t,'user'); inp.value=''; inp.style.height='auto'; advance(t);
 }
 
 advance('');
